@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>雷达</title>
+</head>
+<body>
+    <canvas id="leida" width="400px" height="400px"></canvas>
+</body>
+    <script>
+        (function(){
+            function draw(k){
+                var canvas = document.getElementById('leida');
+                var ctx = canvas.getContext('2d');
+
+
+                ctx.clearRect(0,0,400,400);
+                //雷达背景
+                ctx.beginPath();
+                ctx.arc(200,200,156,0,2*Math.PI,false);
+                ctx.fillStyle = "rgba(45,118,186,0.6)";
+                ctx.fill();
+                ctx.closePath();
+
+                ctx.beginPath();
+                ctx.lineWidth= 1;
+                ctx.strokeStyle = "#dde9f4";
+//圆心
+                ctx.arc(200,200,1,0,2*Math.PI,false);
+//外圈
+                ctx.moveTo(239,200);
+                ctx.arc(200,200,39,0,2*Math.PI,false);
+                ctx.moveTo(278,200);
+                ctx.arc(200,200,78,0,2*Math.PI,false);
+                ctx.moveTo(317,200);
+                ctx.arc(200,200,117,0,2*Math.PI,false);
+                //横竖直线
+                ctx.moveTo(356,200);
+                ctx.lineTo(44,200);
+                ctx.moveTo(200,44);
+                ctx.lineTo(200,356);
+                //倾斜直线
+                ctx.moveTo(90,90);
+                ctx.lineTo(310,310);
+                ctx.moveTo(310,90);
+                ctx.lineTo(90,310);
+                ctx.stroke();
+                ctx.closePath();
+                //外圈边框
+                ctx.beginPath();
+                ctx.strokeStyle = "#b7dcf9";
+                ctx.lineWidth = 20;
+                ctx.moveTo(356,200);
+                ctx.arc(200,200,166,0,2*Math.PI,false);
+                ctx.stroke();
+                ctx.closePath();
+
+                ctx.save();
+                ctx.translate(200,200);
+                ctx.rotate(k*2*Math.PI/75);
+                ctx.beginPath();
+//                var color = ctx.createLinearGradient(0,0,40,156);
+//                color.addColorStop(1,'#dde9f4');
+//                color.addColorStop(0,'rgba(255,255,255,0.1)');
+//                ctx.fillStyle = color;
+//                ctx.fillRect(0,0,40,156);
+                ctx.lineWidth= 6;
+                ctx.strokeStyle = "#dde9f4";
+                ctx.moveTo(0,0);
+                ctx.lineTo(0,156);
+                ctx.stroke();
+                ctx.restore();
+                ctx.closePath();
+
+
+            }
+            var k = 0;
+            setInterval(function(){
+                if (k>599){
+                    k=0;
+                }
+                k++;
+                draw(k);
+            },100);
+        })()
+
+
+    </script>
+</html>
