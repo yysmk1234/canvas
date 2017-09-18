@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>马里奥</title>
+    <link type="text/css" href="calendar/css/clear.css">
+    <style>
+        .screen{
+            width: 600px;
+            height: 600px;
+            margin: 100px auto ;
+        }
+        #box{
+            width: 20px;
+            height: 20px;
+            float: left;
+            box-sizing: border-box;
+            /*border: 1px #333 solid;*/
+        }
+    </style>
+</head>
+<body>
+    <div class="screen"></div>
+</body>
+    <script>
+        (function(){
+            function Mario(){
+                var mario = document.querySelectorAll('.screen');
+                Mario.prototype.init = function(){
+                    var str = "";
+                    for(var i= 0;i<=29 ;i++){
+                        for (var k= 0;k<=29;k++){
+                            str += "<div id='box'></div>";
+                        }
+                        mario.item(0).innerHTML = str;
+                    }
+                    var red = [
+                        192,193,194,195,196,
+                        221,222,223,224,225,226,227,228,229,
+                        403,433,436,463,464,465,466,
+                        492,494,495,497,
+                        522,523,524,525,526,527,
+                        551,552,553,554,555,556,557,558,
+                        581,582,583,586,587,588
+                    ];
+                    var yellow = [
+                        254,255,257,
+                            281,283,284,285,287,288,289,
+                            311,314,315,316,318,319,320,
+                            342,343,344,345,
+                            372,373,374,375,376,377,378,
+                            489,490,519,520,521,549,550,
+                            499,500,528,529,530,559,560
+                    ];
+                    var brown = [
+                        251,252,253,256,280,282,286,
+                            310,312,313,317,
+                            340,341,346,347,348,349,
+                            401,402,404,405,406,
+                            430,431,432,434,435,437,438,439,
+                            459,460,461,462,467,468,469,470,
+                            491,498,
+                            610,611,612,617,618,619,
+                            639,640,641,642,647,648,649,650
+                    ];
+                    red.forEach(function(item){
+                        mario.item(0).childNodes[item].style.background = "#ff3300"
+                    });
+                    yellow.forEach(function(item){
+                        mario.item(0).childNodes[item].style.background = "#ff9a33"
+                    });
+                    brown.forEach(function(item){
+                        mario.item(0).childNodes[item].style.background = "#84805a"
+                    });
+                }
+            }
+            var littlem =new Mario().init();
+        })()
+    </script>
+</html>
